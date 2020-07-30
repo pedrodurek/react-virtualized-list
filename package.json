@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "start": "webpack-dev-server --open --config webpack.dev.js"
+    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "lint": "eslint src/ --ext .ts,.tsx,.js --cache"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
@@ -26,6 +27,8 @@
     "eslint-plugin-react": "^7.20.5",
     "eslint-plugin-react-hooks": "^4.0.8",
     "html-webpack-plugin": "^4.3.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
     "typescript": "^3.9.7",
     "webpack": "^4.44.0",
@@ -36,5 +39,18 @@
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && tsc"
+    }
+  },
+  "lint-staged": {
+    "*.js": ["prettier --find-config-path --write", "eslint --fix --cache"],
+    "*.{tsx,ts}": [
+      "prettier --find-config-path --parser typescript --write",
+      "eslint --fix --cache"
+    ],
+    "*.json": ["prettier --find-config-path --parser json --write"]
   }
 }
