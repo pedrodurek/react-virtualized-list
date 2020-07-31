@@ -29,9 +29,12 @@ module.exports = {
   },
   ignorePatterns: ['webpack*.js'],
   rules: {
+    'import/prefer-default-export': 'off',
     'react/jsx-filename-extension': 'off',
     'no-unused-vars': 'off',
+    'object-curly-newline': 'off',
     'react/prop-types': 'off',
+    'implicit-arrow-linebreak': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
