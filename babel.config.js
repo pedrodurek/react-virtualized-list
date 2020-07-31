@@ -9,6 +9,7 @@ module.exports = {
           res: './src/res',
           contexts: './src/contexts',
           views: './src/views',
+          components: './src/components',
         },
       },
     ],

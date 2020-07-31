@@ -13,7 +13,8 @@
     "paths": {
       "res": ["res"],
       "contexts": ["contexts"],
-      "views": ["views"]
+      "views": ["views"],
+      "components": ["components"]
     }
   }
 }
