@@ -41,10 +41,13 @@
     "webpack-merge": "^5.0.9"
   },
   "dependencies": {
+    "@types/react-window": "^1.8.2",
     "hex-to-rgba": "^2.0.1",
+    "lorem-ipsum": "^2.0.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
+    "react-window": "^1.8.5",
     "styled-components": "^5.1.1"
   },
   "husky": {
