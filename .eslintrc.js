@@ -35,6 +35,8 @@ module.exports = {
     'object-curly-newline': 'off',
     'react/prop-types': 'off',
     'implicit-arrow-linebreak': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'react/jsx-closing-bracket-location': 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
