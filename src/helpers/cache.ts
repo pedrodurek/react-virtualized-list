@@ -9,8 +9,5 @@ export const getCachedData = <T extends Object | unknown[]>(
   key: string,
 ): T | null => {
   const result = localStorage.getItem(key);
-  if (result) {
-    return JSON.parse(result);
-  }
-  return null;
+  return result && JSON.parse(result);
 };
