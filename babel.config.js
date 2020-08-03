@@ -10,6 +10,7 @@ module.exports = {
           contexts: './src/contexts',
           views: './src/views',
           components: './src/components',
+          helpers: './src/helpers',
         },
       },
     ],

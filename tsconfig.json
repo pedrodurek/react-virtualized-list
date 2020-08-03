@@ -14,7 +14,8 @@
       "res": ["res"],
       "contexts": ["contexts"],
       "views": ["views"],
-      "components": ["components"]
+      "components": ["components"],
+      "helpers": ["helpers"]
     }
   }
 }
