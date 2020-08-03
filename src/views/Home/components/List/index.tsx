@@ -2,6 +2,7 @@ import React, { FC, useLayoutEffect, useRef, useEffect } from 'react';
 import { VariableSizeList } from 'react-window';
 import { useListValue } from 'views/Home/hooks/useListValue';
 import { Droppable, DropResult, DragDropContext } from 'react-beautiful-dnd';
+import { debounce } from 'debounce';
 import { ListContainer } from './styles';
 import ListItem from '../ListItem';
 import ListRow from '../ListRow';
@@ -33,6 +34,10 @@ const List: FC = () => {
     reorderList(source.index, destination.index);
   };
 
+  const resetCachedList = debounce(() => {
+    listRef.current?.resetAfterIndex(0);
+  }, 50);
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <ListContainer>
@@ -55,7 +60,7 @@ const List: FC = () => {
               outerRef={provided.innerRef}
               itemSize={getSize}
               height={700}
-              onItemsRendered={() => listRef.current?.resetAfterIndex(0)}
+              onItemsRendered={resetCachedList}
               width="100%">
               {ListRow}
             </VariableSizeList>
