@@ -31,18 +31,18 @@ export const Text = styled.p``;
 export const getItemStyle = (
   provided: DraggableProvided,
   style: CSSProperties,
-  isDragging?: boolean,
+  _isDragging?: boolean,
 ) => {
   const combined = {
     ...style,
     ...provided.draggableProps.style,
   };
 
-  const marginBottom = 12;
-  const withSpacing = {
-    ...combined,
-    height: isDragging ? combined.height : combined.height ?? 0 - marginBottom,
-    marginBottom,
-  };
-  return withSpacing;
+  // const marginBottom = 12;
+  // const withSpacing = {
+  //   ...combined,
+  //   height: isDragging ? combined.height : combined.height - marginBottom,
+  //   marginBottom,
+  // };
+  return combined;
 };

@@ -1,4 +1,4 @@
-export const setCachedData = <T extends Object | unknown[]>(
+export const setCachedData = <T extends Object | unknown[] | null>(
   key: string,
   data: T,
 ) => {

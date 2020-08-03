@@ -55,10 +55,11 @@ const ListProvider: FC = ({ children }) => {
     sizeMap.current = {};
     setItems([]);
     setListIndex(0);
+    setCachedData('list-item', null);
   };
 
   const reorderList: ListValue['reorderList'] = (startIndex, endIndex) => {
-    setItems((prev) => reorderArray(prev, startIndex, endIndex));
+    setItems(reorderArray(items, startIndex, endIndex));
   };
 
   const addItems: ListValue['addItems'] = (itemsGenerated) => {
