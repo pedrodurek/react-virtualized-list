@@ -1,7 +1,7 @@
-import React, { FC, useRef, useEffect } from 'react';
+import React, { memo, forwardRef } from 'react';
 import { Item } from 'views/Home/types';
-import { ListChildComponentProps } from 'react-window';
-import { useListValue } from 'views/Home/hooks/useListValue';
+import { DraggableProvided } from 'react-beautiful-dnd';
+import { ListChildComponentProps, areEqual } from 'react-window';
 import {
   MainContainer,
   HeaderContent,
@@ -9,43 +9,33 @@ import {
   CloseButton,
   Text,
   ItemContainer,
+  getItemStyle,
 } from './styles';
 
-type DataProps = Item & {
-  onClose: () => void;
+type Props = Pick<ListChildComponentProps, 'style'> & {
+  provided: DraggableProvided;
+  item: Item;
+  isDragging?: boolean;
+  onRemove?: () => void;
 };
 
-type Props = Omit<ListChildComponentProps, 'data'> & {
-  data: DataProps[];
-};
-
-const ListItem: FC<Props> = ({ data, index, isScrolling, style }) => {
-  const itemRef = useRef<HTMLDivElement | null>(null);
-  const { setSize } = useListValue();
-
-  useEffect(() => {
-    if (itemRef.current) {
-      setSize(index, itemRef.current.getBoundingClientRect().height + 12);
-    }
-  }, []);
-
-  return (
-    <MainContainer style={style}>
-      <ItemContainer ref={itemRef}>
-        {isScrolling ? (
-          <span>Scrolling</span>
-        ) : (
-          <>
-            <HeaderContent>
-              <Title>{data[index].title}</Title>
-              <CloseButton>X</CloseButton>
-            </HeaderContent>
-            <Text>{data[index].text}</Text>
-          </>
-        )}
+const ListItem = forwardRef<HTMLDivElement, Props>(
+  ({ provided, item, style, isDragging, onRemove }, ref) => (
+    <MainContainer
+      {...provided.draggableProps}
+      {...provided.dragHandleProps}
+      ref={provided.innerRef}
+      className={`item ${isDragging ? 'is-dragging' : ''}`}
+      style={getItemStyle(provided, style, isDragging)}>
+      <ItemContainer ref={ref}>
+        <HeaderContent>
+          <Title>{item.title}</Title>
+          <CloseButton onClick={onRemove}>X</CloseButton>
+        </HeaderContent>
+        <Text>{item.text}</Text>
       </ItemContainer>
     </MainContainer>
-  );
-};
+  ),
+);
 
-export default ListItem;
+export default memo(ListItem, areEqual);
