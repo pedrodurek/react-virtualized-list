@@ -1,0 +1,16 @@
+export const setCachedData = <T extends Object | unknown[]>(
+  key: string,
+  data: T,
+) => {
+  localStorage.setItem(key, JSON.stringify(data));
+};
+
+export const getCachedData = <T extends Object | unknown[]>(
+  key: string,
+): T | null => {
+  const result = localStorage.getItem(key);
+  if (result) {
+    return JSON.parse(result);
+  }
+  return null;
+};
