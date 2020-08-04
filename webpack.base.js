@@ -8,6 +8,7 @@ module.exports = {
   },
   optimization: {
     runtimeChunk: 'single',
+    moduleIds: 'hashed',
     splitChunks: {
       cacheGroups: {
         vendor: {
