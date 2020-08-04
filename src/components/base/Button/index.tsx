@@ -16,11 +16,10 @@ const Button = styled.button(
     cursor: pointer;
     outline: none;
     transition: all 0.15s ease-in-out;
-    :focus,
     :hover {
       background-color: ${colors.primaryDarker};
     }
-    :focus {
+    :active:focus {
       box-shadow: 0 0 0 0.2rem ${hexToRgba(colors.primary, 0.5)};
     }
   `,
