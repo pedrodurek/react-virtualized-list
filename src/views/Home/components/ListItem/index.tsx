@@ -1,7 +1,8 @@
-import React, { memo, forwardRef } from 'react';
+import React, { memo, forwardRef, CSSProperties } from 'react';
 import { Item } from 'views/Home/types';
 import { DraggableProvided } from 'react-beautiful-dnd';
-import { ListChildComponentProps, areEqual } from 'react-window';
+import { areEqual } from 'react-window';
+import { GrFormClose } from 'react-icons/gr';
 import {
   MainContainer,
   HeaderContent,
@@ -12,11 +13,12 @@ import {
   getItemStyle,
 } from './styles';
 
-type Props = Pick<ListChildComponentProps, 'style'> & {
+type Props = {
   provided: DraggableProvided;
   item: Item;
   isDragging?: boolean;
   onRemove?: () => void;
+  style?: CSSProperties;
 };
 
 const ListItem = forwardRef<HTMLDivElement, Props>(
@@ -25,12 +27,13 @@ const ListItem = forwardRef<HTMLDivElement, Props>(
       {...provided.draggableProps}
       {...provided.dragHandleProps}
       ref={provided.innerRef}
-      className={`item ${isDragging ? 'is-dragging' : ''}`}
       style={getItemStyle(provided, style, isDragging)}>
-      <ItemContainer ref={ref}>
+      <ItemContainer isDragging={isDragging} ref={ref}>
         <HeaderContent>
           <Title>{item.title}</Title>
-          <CloseButton onClick={onRemove}>X</CloseButton>
+          <CloseButton onClick={onRemove}>
+            <GrFormClose />
+          </CloseButton>
         </HeaderContent>
         <Text>{item.text}</Text>
       </ItemContainer>
