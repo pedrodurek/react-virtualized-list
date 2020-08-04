@@ -1,24 +1,30 @@
-import React, { FC, useLayoutEffect, useRef, useEffect } from 'react';
-import { VariableSizeList } from 'react-window';
+import React, { FC, useLayoutEffect, useRef, useEffect, useState } from 'react';
+import { VariableSizeList, ListOnItemsRenderedProps } from 'react-window';
 import { useListValue } from 'views/Home/hooks/useListValue';
 import { Droppable, DropResult, DragDropContext } from 'react-beautiful-dnd';
 import { debounce } from 'debounce';
-import { ListContainer } from './styles';
+import { FiArrowDown } from 'react-icons/fi';
+import { ListContainer, GoToEndButton } from './styles';
 import ListItem from '../ListItem';
 import ListRow from '../ListRow';
 
 const List: FC = () => {
   const { items, listIndex, getSize, reorderList } = useListValue();
   const listRef = useRef<VariableSizeList>(null);
+  const [showGoToEnd, setShowGoToEnd] = useState(false);
 
   useLayoutEffect(() => {
     listRef.current?.resetAfterIndex(0);
   }, [items]);
 
-  useEffect(() => {
+  const goToEndList = () => {
     listRef.current?.scrollToItem(items.length - 1, 'end');
+  };
+
+  useEffect(() => {
+    goToEndList();
     const timeout = setTimeout(() => {
-      listRef.current?.scrollToItem(items.length - 1, 'end');
+      goToEndList();
     }, 100);
 
     return () => {
@@ -34,39 +40,48 @@ const List: FC = () => {
     reorderList(source.index, destination.index);
   };
 
-  const resetCachedList = debounce(() => {
+  const onItemsRendered = debounce((props: ListOnItemsRenderedProps | null) => {
     listRef.current?.resetAfterIndex(0);
+    if (props?.visibleStopIndex === props?.overscanStopIndex) {
+      setShowGoToEnd(false);
+    } else {
+      setShowGoToEnd(true);
+    }
   }, 50);
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <ListContainer>
-        <Droppable
-          droppableId="droppable"
-          mode="virtual"
-          renderClone={(provided, snapshot, rubric) => (
-            <ListItem
-              provided={provided}
-              isDragging={snapshot.isDragging}
-              item={items[rubric.source.index]}
-              style={{}}
-            />
-          )}>
-          {(provided) => (
+    <DragDropContext key={`test-${listIndex}`} onDragEnd={onDragEnd}>
+      <Droppable
+        droppableId="droppable"
+        mode="virtual"
+        renderClone={(provided, snapshot, rubric) => (
+          <ListItem
+            provided={provided}
+            isDragging={snapshot.isDragging}
+            item={items[rubric.source.index]}
+          />
+        )}>
+        {(provided, snapshot) => (
+          <ListContainer isDragging={snapshot.isDraggingOver}>
             <VariableSizeList
+              key={`test-${listIndex}`}
               ref={listRef}
               itemData={items}
               itemCount={items.length}
               outerRef={provided.innerRef}
               itemSize={getSize}
-              height={700}
-              onItemsRendered={resetCachedList}
+              height={600}
+              estimatedItemSize={142}
+              onItemsRendered={onItemsRendered}
               width="100%">
               {ListRow}
             </VariableSizeList>
-          )}
-        </Droppable>
-      </ListContainer>
+            <GoToEndButton showButton={showGoToEnd} onClick={goToEndList}>
+              <FiArrowDown />
+            </GoToEndButton>
+          </ListContainer>
+        )}
+      </Droppable>
     </DragDropContext>
   );
 };
