@@ -37,6 +37,7 @@ const Controllers: FC = () => {
       <TextField
         placeholder="# of items"
         onChange={onChange}
+        type="number"
         value={numItems}
       />
       <ActionButton onClick={generateItems}>Generate</ActionButton>

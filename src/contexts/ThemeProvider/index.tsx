@@ -13,6 +13,12 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     background-color: ${({ theme }) => theme.colors.background};
   }
+
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;
 
 const ThemeProvider: FC = ({ children }) => {
