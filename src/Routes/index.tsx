@@ -1,7 +1,12 @@
 import React, { FC } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from 'views/Home';
+import Loadable from 'react-loadable';
 import { Header, MainContainer, Title, Footer, Text } from './styles';
+
+const LoadableHome = Loadable({
+  loader: () => import('views/Home'),
+  loading: () => null,
+});
 
 const Routes: FC = () => (
   <MainContainer>
@@ -10,7 +15,7 @@ const Routes: FC = () => (
     </Header>
     <Router>
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={LoadableHome} />
       </Switch>
     </Router>
     <Footer>

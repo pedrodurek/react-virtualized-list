@@ -18,6 +18,7 @@
     "@types/react": "^16.9.43",
     "@types/react-beautiful-dnd": "^13.0.0",
     "@types/react-dom": "^16.9.8",
+    "@types/react-loadable": "^5.5.3",
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.1",
     "@typescript-eslint/eslint-plugin": "^3.7.1",
@@ -51,6 +52,7 @@
     "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
+    "react-loadable": "^5.5.0",
     "react-router-dom": "^5.2.0",
     "react-window": "^1.8.5",
     "styled-components": "^5.1.1"
