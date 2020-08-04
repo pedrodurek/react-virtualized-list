@@ -49,7 +49,7 @@ const ListProvider: FC = ({ children }) => {
   };
 
   const getSize: ListValue['getSize'] = (index) =>
-    sizeMap.current[index] ?? 146;
+    sizeMap.current[index] ?? 142;
 
   const resetList: ListValue['resetList'] = () => {
     sizeMap.current = {};

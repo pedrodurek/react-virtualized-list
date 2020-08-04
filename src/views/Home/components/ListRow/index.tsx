@@ -15,7 +15,7 @@ const ListRow: FC<Props> = ({ data, index, style }) => {
 
   useEffect(() => {
     if (itemRef.current) {
-      setSize(index, itemRef.current.getBoundingClientRect().height + 12);
+      setSize(index, itemRef.current.getBoundingClientRect().height + 8);
     }
   }, [data]);
 
