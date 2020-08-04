@@ -52,6 +52,10 @@ const List: FC = () => {
     }
   }, 50);
 
+  if (items.length === 0) {
+    return null;
+  }
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable
