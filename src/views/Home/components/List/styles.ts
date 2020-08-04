@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import hexToRgba from 'hex-to-rgba';
 import Button from 'components/base/Button';
+import Fade from 'components/Fade';
 
 export const ListContainer = styled.ul<{ isDragging: boolean }>(
   ({ theme: { dimens, colors }, isDragging }) => css`
@@ -20,14 +21,15 @@ export const ListContainer = styled.ul<{ isDragging: boolean }>(
   `,
 );
 
-export const GoToEndButton = styled(Button)<{ showButton: boolean }>`
-  opacity: ${({ showButton }) => (showButton ? 1 : 0)};
-  transition: opacity 0.2s ease-in-out;
-  position: absolute;
-  display: flex;
+export const GoToEndButton = styled(Button)`
   padding: 9px 10px;
-  bottom: 12px;
-  right: 12px;
+  display: flex;
   font-size: x-large;
   border-radius: 50%;
+`;
+
+export const FadeContainer = styled(Fade)`
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
 `;

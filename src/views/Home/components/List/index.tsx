@@ -4,7 +4,7 @@ import { useListValue } from 'views/Home/hooks/useListValue';
 import { Droppable, DropResult, DragDropContext } from 'react-beautiful-dnd';
 import { debounce } from 'debounce';
 import { FiArrowDown } from 'react-icons/fi';
-import { ListContainer, GoToEndButton } from './styles';
+import { ListContainer, GoToEndButton, FadeContainer } from './styles';
 import ListItem from '../ListItem';
 import ListRow from '../ListRow';
 
@@ -78,9 +78,11 @@ const List: FC = () => {
               width="100%">
               {ListRow}
             </VariableSizeList>
-            <GoToEndButton showButton={showGoToEnd} onClick={goToEndList}>
-              <FiArrowDown />
-            </GoToEndButton>
+            <FadeContainer out={!showGoToEnd} duration={0.2}>
+              <GoToEndButton onClick={goToEndList}>
+                <FiArrowDown />
+              </GoToEndButton>
+            </FadeContainer>
           </ListContainer>
         )}
       </Droppable>
