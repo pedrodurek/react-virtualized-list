@@ -2,9 +2,9 @@
 
 Implementation of a virtualized draggable list with dynamic height.
 
-Link: https://react-virtualized-list.vercel.app/
+Link: [https://react-virtualized-list.vercel.app/](https://react-virtualized-list.vercel.app/){:target="\_blank"}
 
-Bundle Analyzer: https://react-virtualized-list.vercel.app/bundle_sizes.html
+Bundle Analyzer: [https://react-virtualized-list.vercel.app/bundle_sizes.html](https://react-virtualized-list.vercel.app/bundle_sizes.html){:target="\_blank"}
 
 ## Install
 
