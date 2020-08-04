@@ -9,7 +9,9 @@ import { AppTheme } from './types';
 
 const GlobalStyle = createGlobalStyle`
   html, body {
+    font-family: 'Lato', sans-serif;
     margin: 0;
+    background-color: ${({ theme }) => theme.colors.background};
   }
 `;
 
