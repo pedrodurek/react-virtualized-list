@@ -1,4 +1,4 @@
-import React, { FC, useState, ChangeEvent } from 'react';
+import React, { FC, useState, ChangeEvent, KeyboardEvent } from 'react';
 import TextField from 'components/base/TextField';
 import { useListValue } from 'views/Home/hooks/useListValue';
 import { loremIpsum } from 'lorem-ipsum';
@@ -28,6 +28,14 @@ const Controllers: FC = () => {
     }
   };
 
+  const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      event.stopPropagation();
+      generateItems();
+    }
+  };
+
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setNumItems(event.target.value);
   };
@@ -37,6 +45,7 @@ const Controllers: FC = () => {
       <TextField
         placeholder="# of items"
         onChange={onChange}
+        onKeyDown={onKeyDown}
         type="number"
         value={numItems}
       />
