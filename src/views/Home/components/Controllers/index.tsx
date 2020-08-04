@@ -3,7 +3,8 @@ import TextField from 'components/base/TextField';
 import { useListValue } from 'views/Home/hooks/useListValue';
 import { loremIpsum } from 'lorem-ipsum';
 import { Item } from 'views/Home/types';
-import { MainContainer, ActionButton } from './styles';
+import { RowContainer } from 'components/containers';
+import { ActionButton } from './styles';
 
 const Controllers: FC = () => {
   const [numItems, setNumItems] = useState<string>('');
@@ -28,14 +29,11 @@ const Controllers: FC = () => {
   };
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    if (value) {
-      setNumItems(value);
-    }
+    setNumItems(event.target.value);
   };
 
   return (
-    <MainContainer>
+    <RowContainer>
       <TextField
         placeholder="# of items"
         onChange={onChange}
@@ -43,7 +41,7 @@ const Controllers: FC = () => {
       />
       <ActionButton onClick={generateItems}>Generate</ActionButton>
       <ActionButton onClick={resetList}>Reset</ActionButton>
-    </MainContainer>
+    </RowContainer>
   );
 };
 export default Controllers;

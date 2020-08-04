@@ -2,16 +2,15 @@ import styled, { css } from 'styled-components';
 import { DraggableProvided } from 'react-beautiful-dnd';
 import { CSSProperties } from 'react';
 import hexToRgba from 'hex-to-rgba';
+import { ColContainer, RowContainer } from 'components/containers';
 
 export const MainContainer = styled.li`
   box-sizing: border-box;
   list-style-type: none;
 `;
 
-export const ItemContainer = styled.div<{ isDragging?: boolean }>(
+export const ItemContainer = styled(ColContainer)<{ isDragging?: boolean }>(
   ({ theme: { dimens, colors }, isDragging }) => css`
-    display: flex;
-    flex-direction: column;
     background: ${colors.white};
     padding: ${dimens.spacing.medium}px;
     box-shadow: 1px 1px 5px 0px
@@ -20,9 +19,7 @@ export const ItemContainer = styled.div<{ isDragging?: boolean }>(
   `,
 );
 
-export const HeaderContent = styled.div`
-  display: flex;
-  flex-direction: row;
+export const HeaderContent = styled(RowContainer)`
   justify-content: space-between;
   align-items: center;
 `;

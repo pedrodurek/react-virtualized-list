@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ColContainer } from 'components/containers';
 
 export const MainContainer = styled.div`
   display: grid;
@@ -15,9 +16,7 @@ export const Title = styled.h1`
   color: ${({ theme }) => theme.colors.white};
 `;
 
-export const Footer = styled.footer`
-  display: flex;
-  flex-direction: column;
+export const Footer = styled(ColContainer).attrs({ as: 'footer' })`
   align-items: center;
   background-color: ${({ theme }) => theme.colors.primary};
 `;
