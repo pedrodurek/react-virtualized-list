@@ -37,6 +37,7 @@ module.exports = {
     'implicit-arrow-linebreak': 'off',
     'react/jsx-props-no-spreading': 'off',
     'react/jsx-closing-bracket-location': 'off',
+    indent: 'off',
     '@typescript-eslint/no-unused-vars': [
       'error',
       {
