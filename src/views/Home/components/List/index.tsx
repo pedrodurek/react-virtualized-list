@@ -44,11 +44,13 @@ const List: FC = () => {
   };
 
   const onItemsRendered = debounce((props: ListOnItemsRenderedProps | null) => {
-    listRef.current?.resetAfterIndex(0);
-    if (props?.visibleStopIndex === props?.overscanStopIndex) {
-      setShowGoToEnd(false);
-    } else {
-      setShowGoToEnd(true);
+    if (props) {
+      listRef.current?.resetAfterIndex(0);
+      if (props.visibleStopIndex === props.overscanStopIndex) {
+        setShowGoToEnd(false);
+      } else {
+        setShowGoToEnd(true);
+      }
     }
   }, 50);
 
