@@ -15,6 +15,9 @@ const List: FC = () => {
 
   useLayoutEffect(() => {
     listRef.current?.resetAfterIndex(0);
+    if (items.length === 0) {
+      setShowGoToEnd(false);
+    }
   }, [items]);
 
   const goToEndList = () => {
