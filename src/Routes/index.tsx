@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Loadable from 'react-loadable';
+import Loading from 'components/Loading';
 import { Header, MainContainer, Title, Footer, Text } from './styles';
 
 const LoadableHome = Loadable({
   loader: () => import('views/Home'),
-  loading: () => null,
+  loading: Loading,
+  delay: 200,
 });
 
 const Routes: FC = () => (
