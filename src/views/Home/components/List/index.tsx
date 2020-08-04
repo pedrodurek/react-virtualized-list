@@ -53,7 +53,7 @@ const List: FC = () => {
   }, 50);
 
   return (
-    <DragDropContext key={`test-${listIndex}`} onDragEnd={onDragEnd}>
+    <DragDropContext onDragEnd={onDragEnd}>
       <Droppable
         droppableId="droppable"
         mode="virtual"
@@ -67,7 +67,6 @@ const List: FC = () => {
         {(provided, snapshot) => (
           <ListContainer isDragging={snapshot.isDraggingOver}>
             <VariableSizeList
-              key={`test-${listIndex}`}
               ref={listRef}
               itemData={items}
               itemCount={items.length}
